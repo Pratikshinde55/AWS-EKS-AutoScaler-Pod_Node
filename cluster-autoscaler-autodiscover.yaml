@@ -1,4 +1,4 @@
-# you can download this from -> https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
+# This file downloaded from -> https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
 ---
 apiVersion: v1
 kind: ServiceAccount
