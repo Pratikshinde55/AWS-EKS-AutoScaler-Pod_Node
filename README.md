@@ -28,7 +28,7 @@ aws eks auto scaler for Node &amp; pod
 
 This command is for create cluster with enable asg (--asg-access) : 
 
-         # eksctl create cluster  --name pscluster1  --region ap-south-1  --nodegroup-name ps-ng1  --node-type t2.micro  --nodes 3  --nodes-min 3 
+          eksctl create cluster  --name pscluster1  --region ap-south-1  --nodegroup-name ps-ng1  --node-type t2.micro  --nodes 3  --nodes-min 3 
          --nodes-max 7   --node-volume-size 8  --node-volume-type gp3  --ssh-access  --enable-ssm  --asg-access  --managed
 
 
