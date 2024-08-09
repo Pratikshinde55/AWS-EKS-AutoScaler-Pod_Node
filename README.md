@@ -28,8 +28,9 @@ aws eks auto scaler for Node &amp; pod
 
 - This command is for create cluster with enable asg (--asg-access) : 
 
-          eksctl create cluster  --name pscluster1  --region ap-south-1  --nodegroup-name ps-ng1  --node-type t2.micro  --nodes 3  --nodes-min 3 
-         --nodes-max 7   --node-volume-size 8  --node-volume-type gp3  --ssh-access  --enable-ssm  --asg-access  --managed
+          eksctl create cluster  --name pscluster2  --region ap-south-1  --version 1.30  --nodegroup-name psnodegp --instance-types t2.micro --nodes 3
+          --nodes-min 3  --nodes-max 6  --node-volume-size 8  --node-volume-type gp3  --ssh-access   --enable-ssm --instance-name psworkernode --asg-access
+          --managed
 
 ![image](https://github.com/user-attachments/assets/f58bac64-f176-41fa-a615-163758d6362a)
 
@@ -60,3 +61,12 @@ in this file we replace "<YOUR CLUSTER NAME >"  > pscluster1 my cluster name
 
 ![image](https://github.com/user-attachments/assets/0c5bc16f-3902-47b1-8370-99ab1bce7de1)
 
+Check lastest version or on which version our kubernetes work and use that image for autoscaler pod: (https://github.com/kubernetes/autoscaler/releases)
+
+In my case i use version -->> --version 1.30  so i use image version ":v1.30.1"
+
+command for deployment.apps/cluster-autoscaler image updated:
+
+           kubectl set image deployment cluster-autoscaler -n kube-system cluster-autoscaler=registry.k8s.io/autoscaling/cluster:v1.30.1
+           
+          
