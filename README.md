@@ -44,7 +44,12 @@ aws eks auto scaler for Node &amp; pod
 
           notepad cluster-autoscaler-autodiscover.yaml
 
+
+![image](https://github.com/user-attachments/assets/ce1e8794-582b-4a9f-84a7-2c317a6d4a6d)
+
+
 ![image](https://github.com/user-attachments/assets/d4bf2eb5-3fa9-44b5-9d7e-01b36d0be2bb)
+
 
 in this file we replace "<YOUR CLUSTER NAME >"  > pscluster1 my cluster name
 
