@@ -1,5 +1,6 @@
 # This file downloaded from -> https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
 ---
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -147,7 +148,7 @@ spec:
           type: RuntimeDefault
       serviceAccountName: cluster-autoscaler
       containers:
-        - image: registry.k8s.io/autoscaling/cluster-autoscaler:v1.26.2
+        - image: registry.k8s.io/autoscaling/cluster-autoscaler:v1.30.1
           name: cluster-autoscaler
           resources:
             limits:
@@ -155,7 +156,7 @@ spec:
               memory: 600Mi
             requests:
               cpu: 100m
-              memory: 600Mi
+              memory: 200Mi
           command:
             - ./cluster-autoscaler
             - --v=4
@@ -163,9 +164,11 @@ spec:
             - --cloud-provider=aws
             - --skip-nodes-with-local-storage=false
             - --expander=least-waste
-            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/<YOUR CLUSTER NAME>
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/pscluster2
             - --balance-similar-node-groups
             - --skip-nodes-with-system-pods=false
+            - --scale-down-unneeded-time=1m
+            - --scale-down-delay-after-add=1m
           volumeMounts:
             - name: ssl-certs
               mountPath: /etc/ssl/certs/ca-certificates.crt # /etc/ssl/certs/ca-bundle.crt for Amazon Linux Worker Nodes
