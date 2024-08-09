@@ -42,20 +42,24 @@ aws eks auto scaler for Node &amp; pod
 
 - open file "cluster-autoscaler-autodiscover.yaml" :
 
+  The YAML file sets up permissions and deploys the Cluster Autoscaler pod, which automatically scales our Kubernetes cluster based on workload demands.
+
           notepad cluster-autoscaler-autodiscover.yaml
 
 
-![image](https://github.com/user-attachments/assets/ce1e8794-582b-4a9f-84a7-2c317a6d4a6d)
+- Check right version of image as compare to kubernetes version while creating cluster:
+
+![image](https://github.com/user-attachments/assets/7ae1c097-845d-49f1-bf24-3a5ae79afad7)
+
+- Set Auto scale down time:
+
+![image](https://github.com/user-attachments/assets/9996df76-19a1-4ca7-a30e-529712833a0e)
+
+In this file we replace "<YOUR CLUSTER NAME >"  > "pscluster2" my cluster name
 
 
-![image](https://github.com/user-attachments/assets/d4bf2eb5-3fa9-44b5-9d7e-01b36d0be2bb)
 
-
-in this file we replace "<YOUR CLUSTER NAME >"  > pscluster1 my cluster name
-
-
-
-- apply file command :
+- apply file command :(Create auto scaler pod)
 
           kubectl apply -f cluster-autoscaler-autodiscover.yaml
 
@@ -70,7 +74,7 @@ Check lastest version or on which version our kubernetes work and use that image
 
 In my case i use version -->> --version 1.30  so i use image version ":v1.30.1"
 
-command for deployment.apps/cluster-autoscaler image updated:
+command for deployment.apps/cluster-autoscaler image updated: (Optional commad/not needed)
 
            kubectl set image deployment cluster-autoscaler -n kube-system cluster-autoscaler=registry.k8s.io/autoscaling/cluster:v1.30.1
            
