@@ -7,7 +7,7 @@ aws eks auto scaler for Node &amp; pod
   1. Node AutoScaling (Cluster AutoScaler & karpenter)
   2. POD AutoScaling (Hpa)
 
- 1. Node AutoScaling:
+ 1. Node AutoScaling: 
     It is "Cluster AutoScaler" means increases worker node, For this EKS use aws ASG service(Auto scaling group).
 
     There are two Autoscaling are available for Node that is "Cluster AutoScaler" & "karpenter".
@@ -59,6 +59,4 @@ in this file we replace "<YOUR CLUSTER NAME >"  > pscluster1 my cluster name
           
 
 ![image](https://github.com/user-attachments/assets/0c5bc16f-3902-47b1-8370-99ab1bce7de1)
-
-
 
