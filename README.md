@@ -78,8 +78,12 @@ command for deployment.apps/cluster-autoscaler image updated: (Optional commad/n
 
            kubectl set image deployment cluster-autoscaler -n kube-system cluster-autoscaler=registry.k8s.io/autoscaling/cluster:v1.30.1
            
- - we can check nodes details info using command:
+ - we can check nodes details info using command: 
 
            kubectl describe nodes
-         
+    
+ - we can check specific nodes details info using command:
+
+           kubectl describe nodes <nodeName>
+       
 # AutoScaling of POD:
