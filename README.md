@@ -24,3 +24,7 @@ aws eks auto scaler for Node &amp; pod
    
 
 
+# AutoScaler for Node:
+
+
+
