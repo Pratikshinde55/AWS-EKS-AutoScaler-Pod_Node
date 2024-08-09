@@ -13,7 +13,7 @@ aws eks auto scaler for Node &amp; pod
 
     for Autoscaling metrics is important, EKS uses aws "Cloud Watch" for matrics the node.
 
-    Matrics means the program keep on monitoring the CPU,RAM of Nodes.
+    Matrics means the program keep on monitoring the CPU,RAM of Nodes. 
 
 2. POD AutoScaling:
 
