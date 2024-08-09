@@ -58,5 +58,7 @@ in this file we replace "<YOUR CLUSTER NAME >"  > pscluster1 my cluster name
            kubectl get pods -n kube-system
           
 
+![image](https://github.com/user-attachments/assets/0c5bc16f-3902-47b1-8370-99ab1bce7de1)
+
 
 
