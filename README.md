@@ -159,5 +159,13 @@ check running metrics server pod command:
 
  ![image](https://github.com/user-attachments/assets/4c8f416b-70b1-4f18-96d9-91b9a24d79d8)
 
+- Now Increase load (This command need fresh terminal or clear terminal)
 
-          
+      kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
+
+
+we can check the the our load increases by watch command:
+
+        kubectl get hpa php-apache --watch
+
+ 
