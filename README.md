@@ -152,20 +152,25 @@ check running metrics server pod command:
       kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
 
  Here we use autoscale keyword which start hpa and set cpu limit=50 and minimum and maximum replicas/scale limit.
+ 
+![image](https://github.com/user-attachments/assets/05146fb9-9477-4dd4-8ecb-676ae52f108e)
 
  Check Hpa start cmd:
 
       kubectl get hpa
 
- ![image](https://github.com/user-attachments/assets/4c8f416b-70b1-4f18-96d9-91b9a24d79d8)
+![image](https://github.com/user-attachments/assets/67bd0c12-6f6a-4fd0-944a-028ac863d786)
 
 - Now Increase load (This command need fresh terminal or clear terminal)
 
       kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
 
 
+![image](https://github.com/user-attachments/assets/956d05d4-0f3e-4d5d-a742-7dd239557392)
+
 we can check the the our load increases by watch command:
 
         kubectl get hpa php-apache --watch
 
- 
+ ![image](https://github.com/user-attachments/assets/eaaadd03-1b40-4dcc-bdde-0e45c59027ae)
+
