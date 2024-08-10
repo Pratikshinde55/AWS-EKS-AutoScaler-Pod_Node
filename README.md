@@ -94,9 +94,9 @@ The manual Horizontal scaling of pods we can done using command:
 
 - Note:
 
-   There is no program running which give metrics of pods, without metrics server we can't use AutoScaling because of this Kubernetes provide "Metrics server".
+  There is no program running which give metrics of pods, without metrics server we can't use AutoScaling because of this Kubernetes provide "Metrics server".
 
-   Metrics server keep on monitoring on all pods(CPU, RAM), If load come then auto horizontal scaling done by using Hpa.
+  Metrics server keep on monitoring on all pods(CPU, RAM), If load come then auto horizontal scaling done by using Hpa.
 
   Metrics server is one kind of program running as pod.
   
@@ -106,4 +106,13 @@ The manual Horizontal scaling of pods we can done using command:
 
       kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
-  
+![image](https://github.com/user-attachments/assets/d56b865e-1477-478a-b6d3-0e29cd5cabd4)
+
+
+- check running metrics server pod command:
+
+      kubectl get pods -n kube-system
+
+![image](https://github.com/user-attachments/assets/c1382a20-1d0a-4892-bbc1-b00cc5957a01)
+
+        
