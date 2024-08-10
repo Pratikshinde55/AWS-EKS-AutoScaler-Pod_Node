@@ -1,7 +1,7 @@
 # EKS-Autoscaler-Pod-Node
 aws eks auto scaler for Node &amp; pod
 
-- EKS master Node AutoScaling is EKS. 
+- EKS master Node AutoScaling is fully managed by EKS. 
 
 - There are two Scaling in EKS: 
   1. Node AutoScaling (Cluster AutoScaler & karpenter)
