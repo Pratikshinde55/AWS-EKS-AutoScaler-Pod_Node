@@ -130,7 +130,7 @@ check running metrics server pod command:
 ![image](https://github.com/user-attachments/assets/93d02a37-a9bf-42b7-b501-1c7ffe9c93c1)
 
 
-- Step 2: Start Hps for deployment 
+- Step 2: Start Hpa for deployment 
 
   we can launch a pod with Hpa, it means we set that pod/deployment as Hpa which autoscale according to load.
 
@@ -146,6 +146,13 @@ check running metrics server pod command:
 
  ![image](https://github.com/user-attachments/assets/0d9d8cf9-d507-4f89-896d-4482ae98bc40)
 
-  
+
+ Create the HorizontalPodAutoscaler:
+
+      kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
+
+ Here we use autoscale keyword which start hpa and set cpu limit=50 and minimum and maximum replicas/scale limit.
+
+ 
 
           
