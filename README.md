@@ -41,7 +41,7 @@ Steps:
 
 - Step 2: Download asg file (This command download GitHub file named as "cluster-autoscaler-autodiscover.yaml")
 
-           curl -O https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
+       curl -O https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
 
 
 - Step 3: Open and edit YAML file "cluster-autoscaler-autodiscover.yaml" :
