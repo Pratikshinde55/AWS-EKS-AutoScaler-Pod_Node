@@ -35,7 +35,7 @@ aws eks auto scaler for Node &amp; pod
 ![image](https://github.com/user-attachments/assets/f58bac64-f176-41fa-a615-163758d6362a)
 
 
-- Now need to start asg using file :
+- Now need to start asg using file : (This command download GitHub file named as "cluster-autoscaler-autodiscover.yaml")
 
            curl -O https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
 
