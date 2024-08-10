@@ -115,4 +115,9 @@ The manual Horizontal scaling of pods we can done using command:
 
 ![image](https://github.com/user-attachments/assets/c1382a20-1d0a-4892-bbc1-b00cc5957a01)
 
-        
+      kubectl get deployment -n kube-system
+
+![image](https://github.com/user-attachments/assets/93d02a37-a9bf-42b7-b501-1c7ffe9c93c1)
+
+
+          
