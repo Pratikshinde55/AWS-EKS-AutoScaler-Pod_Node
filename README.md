@@ -90,7 +90,7 @@ command for deployment.apps/cluster-autoscaler image updated: (Optional commad/n
 
 The manual Horizontal scaling of pods we can done using command:
 
-          kubectl scale deployment myps1  --replicas=5
+    kubectl scale deployment myps1  --replicas=5
 
 - Note:
 
