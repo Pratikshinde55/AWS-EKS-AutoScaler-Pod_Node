@@ -69,7 +69,7 @@ In this file we replace "<YOUR CLUSTER NAME >"  > "pscluster2" my cluster name
 
       kubectl apply -f cluster-autoscaler-autodiscover.yaml
 
-after aplly check cluster-autoscaler pod run:
+after apply check cluster-autoscaler pod run:
 
       kubectl get pods -n kube-system
           
