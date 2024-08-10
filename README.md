@@ -61,7 +61,7 @@ In this file we replace "<YOUR CLUSTER NAME >"  > "pscluster2" my cluster name
 
 - apply file command :(Create auto scaler pod)
 
-    kubectl apply -f cluster-autoscaler-autodiscover.yaml
+      kubectl apply -f cluster-autoscaler-autodiscover.yaml
 
 - after aplly check cluster-autoscaler pod run:
 
