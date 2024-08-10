@@ -98,6 +98,10 @@ The manual Horizontal scaling of pods we can done using command:
 
     kubectl scale deployment myps1  --replicas=5
 
+Steps:  (Steps for Autoscaling of pods)
+ 1.  Install/Download Metrics server & check that is running.
+ 2.  Start Hps for deployment.
+
 - Note:
 
   There is no program running which give metrics of pods, without metrics server we can't use AutoScaling because of this Kubernetes provide "Metrics server".
@@ -108,14 +112,14 @@ The manual Horizontal scaling of pods we can done using command:
   
   Hpa: Horizontal pod AutoScaling
 
-- Install metrics server from YAML file -->> Search on browser 'kubernetes metric server' (Link: https://github.com/kubernetes-sigs/metrics-server)
+- Step 1: Install metrics server from YAML file -->> Search on browser 'kubernetes metric server' (Link: https://github.com/kubernetes-sigs/metrics-server)
 
       kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
 ![image](https://github.com/user-attachments/assets/d56b865e-1477-478a-b6d3-0e29cd5cabd4)
 
 
-- check running metrics server pod command:
+check running metrics server pod command:
 
       kubectl get pods -n kube-system
 
@@ -126,14 +130,14 @@ The manual Horizontal scaling of pods we can done using command:
 ![image](https://github.com/user-attachments/assets/93d02a37-a9bf-42b7-b501-1c7ffe9c93c1)
 
 
-- Now we start Hpa, Hpa :
+- Step 2: Start Hps for deployment 
 
   we can launch a pod with Hpa, it means we set that pod/deployment as Hpa which autoscale according to load.
 
   Hpa is just progarm which attach to Pod/deployment.
 
   for thid i use load generator app which provided by Kubernetes for checking AutoScaling working
- (link- https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough)
+  (link- https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough)
 
 
           
