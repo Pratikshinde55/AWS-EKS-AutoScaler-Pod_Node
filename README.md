@@ -98,7 +98,9 @@ The manual Horizontal scaling of pods we can done using command:
 
    Metrics server keep on monitoring on all pods(CPU, RAM), If load come then auto horizontal scaling done by using Hpa.
 
-   Hpa: Horizontal pod AutoScaling
+  Metrics server is one kind of program running as pod.
+  
+  Hpa: Horizontal pod AutoScaling
 
   
 
