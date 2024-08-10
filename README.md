@@ -28,11 +28,11 @@ aws eks auto scaler for Node &amp; pod
 
 Steps:
 1.  Create cluster with enabling asg access.
-2.  Cluster Autoscaler YAML file.
+2.  Download Cluster Autoscaler YAML file.
 3.  Edit Cluster Autoscaler YAML file.
 4.  Apply Cluster Autoscaler YAML file. (Start Pod)
 
-- This command is for create cluster with enable asg (--asg-access) (AutoScaler group) : 
+- Step 1: This command is for create cluster with enable asg (--asg-access) (AutoScaler group) : 
 
           eksctl create cluster  --name pscluster2  --region ap-south-1  --version 1.30  --nodegroup-name psnodegp --instance-types t2.micro --nodes 3
           --nodes-min 3  --nodes-max 6  --node-volume-size 8  --node-volume-type gp3  --ssh-access   --enable-ssm --instance-name psworkernode --asg-access
@@ -41,12 +41,12 @@ Steps:
 ![image](https://github.com/user-attachments/assets/f58bac64-f176-41fa-a615-163758d6362a)
 
 
-- Now need to start asg using file : (This command download GitHub file named as "cluster-autoscaler-autodiscover.yaml")
+- Step 2: Download asg file (This command download GitHub file named as "cluster-autoscaler-autodiscover.yaml")
 
            curl -O https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
 
 
-- open file "cluster-autoscaler-autodiscover.yaml" :
+- Step 3: Open and edit YAML file "cluster-autoscaler-autodiscover.yaml" :
 
   The YAML file sets up permissions and deploys the Cluster Autoscaler pod, which automatically scales our Kubernetes cluster based on workload demands.
 
@@ -65,7 +65,7 @@ In this file we replace "<YOUR CLUSTER NAME >"  > "pscluster2" my cluster name
 
 
 
-- apply file command :(Create auto scaler pod)
+- Step 4: Apply file command :(Create auto scaler pod)
 
       kubectl apply -f cluster-autoscaler-autodiscover.yaml
 
