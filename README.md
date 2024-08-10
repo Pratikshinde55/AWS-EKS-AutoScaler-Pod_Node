@@ -48,7 +48,7 @@ Steps:
 
   The YAML file sets up permissions and deploys the Cluster Autoscaler pod, which automatically scales our Kubernetes cluster based on workload demands.
 
-          notepad cluster-autoscaler-autodiscover.yaml
+       notepad cluster-autoscaler-autodiscover.yaml
 
 
 Check right version of image as compare to kubernetes version while creating cluster:
