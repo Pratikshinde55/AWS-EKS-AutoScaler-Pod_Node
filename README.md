@@ -80,15 +80,15 @@ In my case i use version -->> --version 1.30  so i use image version ":v1.30.1"
 
 command for deployment.apps/cluster-autoscaler image updated: (Optional commad/not needed)
 
-           kubectl set image deployment cluster-autoscaler -n kube-system cluster-autoscaler=registry.k8s.io/autoscaling/cluster:v1.30.1
+      kubectl set image deployment cluster-autoscaler -n kube-system cluster-autoscaler=registry.k8s.io/autoscaling/cluster:v1.30.1
            
 we can check nodes details info using command: 
 
-           kubectl describe nodes
+      kubectl describe nodes
     
 we can check specific nodes details info using command:
 
-           kubectl describe nodes <nodeName>
+      kubectl describe nodes <nodeName>
        
 # AutoScaling of POD:
 
