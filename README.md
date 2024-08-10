@@ -139,5 +139,13 @@ check running metrics server pod command:
   for thid i use load generator app which provided by Kubernetes for checking AutoScaling working
   (link- https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough)
 
+  To demonstrate a HorizontalPodAutoscaler, you will first start a Deployment that runs a container using the hpa-example image,
+  and expose it as a Service using the following manifest:
+
+       kubectl apply -f https://k8s.io/examples/application/php-apache.yaml
+
+ ![image](https://github.com/user-attachments/assets/0d9d8cf9-d507-4f89-896d-4482ae98bc40)
+
+  
 
           
