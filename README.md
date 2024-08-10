@@ -174,3 +174,29 @@ we can check the the our load increases by watch command:
 
  ![image](https://github.com/user-attachments/assets/eaaadd03-1b40-4dcc-bdde-0e45c59027ae)
 
+
+# See that Autoscaling of Pods and Nodes work:
+
+- Pods: 
+  The metrics server keep on monitoring on pod as soon as load increases on pod/deployment, It send information to hpa (Horizontal pod autoscaler) and based upon 
+  that information Hpa keeps on launching & terminating pods.
+
+![image](https://github.com/user-attachments/assets/5cf7457d-ce86-4e6f-bf2c-4e775da9154c)
+
+![Screenshot 2024-08-10 115601](https://github.com/user-attachments/assets/64da63f6-a50b-45e7-b1f2-03117ecb49d2)
+
+- Nodes:
+  "Cluster Autoscaler"(YMAl file) keep on monitoring and send information to "asg". It capture information & that information send to asg
+   and based upon information it keeps in launching and terminating Nodes(Instances).
+
+![image](https://github.com/user-attachments/assets/a348f046-68f9-4ad4-a809-265c947125e7)
+   
+![Screenshot 2024-08-10 115803](https://github.com/user-attachments/assets/5372de42-5a75-4274-9158-193586f728ab)
+
+
+
+- Note:
+
+  as soon as we stop load generator then 1st pods scale-in to 1 and then Nodes Scale-in to 3 because min=3
+
+![image](https://github.com/user-attachments/assets/e15b10e3-748e-4b53-94ab-80ef5ecde78a)
