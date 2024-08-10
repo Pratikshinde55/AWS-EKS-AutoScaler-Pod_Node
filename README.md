@@ -26,6 +26,11 @@ aws eks auto scaler for Node &amp; pod
 
 # AutoScaler of Node:
 
+Need:
+1. Cluster Autoscaler YAML file.
+2.  Edit Cluster Autoscaler YAML file.
+3.  Apply Cluster Autoscaler YAML file. (Start Pod)
+
 - This command is for create cluster with enable asg (--asg-access) (AutoScaler group) : 
 
           eksctl create cluster  --name pscluster2  --region ap-south-1  --version 1.30  --nodegroup-name psnodegp --instance-types t2.micro --nodes 3
