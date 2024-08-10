@@ -87,3 +87,19 @@ command for deployment.apps/cluster-autoscaler image updated: (Optional commad/n
            kubectl describe nodes <nodeName>
        
 # AutoScaling of POD:
+
+The manual Horizontal scaling of pods we can done using command:
+
+          kubectl scale deployment myps1  --replicas=5
+
+- Note:
+
+   There is no program running which give metrics of pods, without metrics server we can't use AutoScaling because of this Kubernetes provide "Metrics server".
+
+   Metrics server keep on monitoring on all pods(CPU, RAM), If load come then auto horizontal scaling done by using Hpa.
+
+   Hpa: Horizontal pod AutoScaling
+
+  
+
+  
