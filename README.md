@@ -20,7 +20,7 @@ aws eks auto scaler for Node &amp; pod
 
    For Pod AutoScaling Hpa(Horizontal Pod AutoScaling) is used.
 
-   Kebernetes give metrics server for pod autoscaling, we need to download that metrics server which helps us for AutoScaling.
+   Kubernetes give metrics server for pod autoscaling, we need to download that metrics server which helps us for AutoScaling.
    
 
 
