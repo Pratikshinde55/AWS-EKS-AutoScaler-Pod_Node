@@ -26,10 +26,11 @@ aws eks auto scaler for Node &amp; pod
 
 # AutoScaler of Node:
 
-Need:
-1. Cluster Autoscaler YAML file.
-2.  Edit Cluster Autoscaler YAML file.
-3.  Apply Cluster Autoscaler YAML file. (Start Pod)
+Steps:
+1.Create cluster with enabling asg access.
+2.  Cluster Autoscaler YAML file.
+3.  Edit Cluster Autoscaler YAML file.
+4.  Apply Cluster Autoscaler YAML file. (Start Pod)
 
 - This command is for create cluster with enable asg (--asg-access) (AutoScaler group) : 
 
