@@ -102,6 +102,8 @@ The manual Horizontal scaling of pods we can done using command:
   
   Hpa: Horizontal pod AutoScaling
 
-  
+- Install metrics server from YAML file -->> Search on browser 'kubernetes metric server' (Link: https://github.com/kubernetes-sigs/metrics-server)
+
+           kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
   
