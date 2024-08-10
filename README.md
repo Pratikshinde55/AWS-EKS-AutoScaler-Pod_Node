@@ -144,7 +144,7 @@ check running metrics server pod command:
 
        kubectl apply -f https://k8s.io/examples/application/php-apache.yaml
 
- ![image](https://github.com/user-attachments/assets/0d9d8cf9-d507-4f89-896d-4482ae98bc40)
+![image](https://github.com/user-attachments/assets/0d9d8cf9-d507-4f89-896d-4482ae98bc40)
 
 
  Create the HorizontalPodAutoscaler:
@@ -153,6 +153,11 @@ check running metrics server pod command:
 
  Here we use autoscale keyword which start hpa and set cpu limit=50 and minimum and maximum replicas/scale limit.
 
- 
+ Check Hpa start cmd:
+
+      kubectl get hpa
+
+ ![image](https://github.com/user-attachments/assets/4c8f416b-70b1-4f18-96d9-91b9a24d79d8)
+
 
           
