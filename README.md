@@ -53,11 +53,11 @@ Steps:
           notepad cluster-autoscaler-autodiscover.yaml
 
 
-- Check right version of image as compare to kubernetes version while creating cluster:
+Check right version of image as compare to kubernetes version while creating cluster:
 
 ![image](https://github.com/user-attachments/assets/7ae1c097-845d-49f1-bf24-3a5ae79afad7)
 
-- Set Auto scale down time:
+Set Auto scale down time:
 
 ![image](https://github.com/user-attachments/assets/9996df76-19a1-4ca7-a30e-529712833a0e)
 
@@ -69,7 +69,7 @@ In this file we replace "<YOUR CLUSTER NAME >"  > "pscluster2" my cluster name
 
       kubectl apply -f cluster-autoscaler-autodiscover.yaml
 
-- after aplly check cluster-autoscaler pod run:
+after aplly check cluster-autoscaler pod run:
 
       kubectl get pods -n kube-system
           
@@ -84,11 +84,11 @@ command for deployment.apps/cluster-autoscaler image updated: (Optional commad/n
 
            kubectl set image deployment cluster-autoscaler -n kube-system cluster-autoscaler=registry.k8s.io/autoscaling/cluster:v1.30.1
            
- - we can check nodes details info using command: 
+we can check nodes details info using command: 
 
            kubectl describe nodes
     
- - we can check specific nodes details info using command:
+we can check specific nodes details info using command:
 
            kubectl describe nodes <nodeName>
        
