@@ -120,4 +120,14 @@ The manual Horizontal scaling of pods we can done using command:
 ![image](https://github.com/user-attachments/assets/93d02a37-a9bf-42b7-b501-1c7ffe9c93c1)
 
 
+- Now we start Hpa, Hpa :
+
+  we can launch a pod with Hpa, it means we set that pod/deployment as Hpa which autoscale according to load.
+
+  Hpa is just progarm which attach to Pod/deployment.
+
+  for thid i use load generator app which provided by Kubernetes for checking AutoScaling working
+ (link- https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough)
+
+
           
