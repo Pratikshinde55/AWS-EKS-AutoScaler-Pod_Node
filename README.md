@@ -25,7 +25,7 @@
 
 ## AutoScaler of Node:
 
-Steps:
+Steps: 
 1.  Create cluster with enabling asg access.
 2.  Download Cluster Autoscaler YAML file.
 3.  Edit Cluster Autoscaler YAML file.
