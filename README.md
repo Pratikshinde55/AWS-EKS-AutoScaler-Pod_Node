@@ -1,4 +1,4 @@
-# AWS EKS auto scaler for Node & pod
+# AWS EKS AutoScaler for Node & pod
 
 **EKS master Node AutoScaling is fully managed by EKS.** 
 
