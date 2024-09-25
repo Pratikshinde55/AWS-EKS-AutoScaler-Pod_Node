@@ -1,7 +1,6 @@
-# EKS-Autoscaler-Pod-Node
-aws eks auto scaler for Node &amp; pod
- 
-- EKS master Node AutoScaling is fully managed by EKS. 
+# AWS EKS auto scaler for Node & pod
+
+**EKS master Node AutoScaling is fully managed by EKS.** 
 
 - There are two Scaling in EKS: 
   1. Node AutoScaling (Cluster AutoScaler & karpenter)
@@ -24,7 +23,7 @@ aws eks auto scaler for Node &amp; pod
    
 
 
-# AutoScaler of Node:
+## AutoScaler of Node:
 
 Steps:
 1.  Create cluster with enabling asg access.
@@ -32,24 +31,20 @@ Steps:
 3.  Edit Cluster Autoscaler YAML file.
 4.  Apply Cluster Autoscaler YAML file. (Start Pod)
 
-- Step 1: This command is for create cluster with enable asg (--asg-access) (AutoScaler group) : 
+### Step-1: [This command is for create cluster with enable asg (--asg-access) (AutoScaler group)] 
 
        eksctl create cluster  --name pscluster2  --region ap-south-1  --version 1.30  --nodegroup-name psnodegp --instance-types t2.micro --nodes 3  --nodes-min 3  --nodes-max 6  --node-volume-size 8  --node-volume-type gp3  --ssh-access   --enable-ssm --instance-name psworkernode --asg-access  --managed
 
 ![image](https://github.com/user-attachments/assets/f58bac64-f176-41fa-a615-163758d6362a)
 
+### Step-2: [Download asg file (This command download GitHub file named as "cluster-autoscaler-autodiscover.yaml")]
 
-- Step 2: Download asg file (This command download GitHub file named as "cluster-autoscaler-autodiscover.yaml")
+     curl -O https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
 
-       curl -O https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
+### Step-3: [Open and edit YAML file "cluster-autoscaler-autodiscover.yaml"]
+The YAML file sets up permissions and deploys the Cluster Autoscaler pod, which automatically scales our Kubernetes cluster based on workload demands.
 
-
-- Step 3: Open and edit YAML file "cluster-autoscaler-autodiscover.yaml" :
-
-  The YAML file sets up permissions and deploys the Cluster Autoscaler pod, which automatically scales our Kubernetes cluster based on workload demands.
-
-       notepad cluster-autoscaler-autodiscover.yaml
-
+     notepad cluster-autoscaler-autodiscover.yaml
 
 Check right version of image as compare to kubernetes version while creating cluster:
 
@@ -61,22 +56,19 @@ Set Auto scale down time:
 
 In this file we replace "<YOUR CLUSTER NAME >"  > "pscluster2" my cluster name
 
+### Step-4: [Apply file command(Create auto scaler pod)]
 
+    kubectl apply -f cluster-autoscaler-autodiscover.yaml
 
-- Step 4: Apply file command :(Create auto scaler pod)
+After apply check cluster-autoscaler pod run:
 
-      kubectl apply -f cluster-autoscaler-autodiscover.yaml
-
-after apply check cluster-autoscaler pod run:
-
-      kubectl get pods -n kube-system
+     kubectl get pods -n kube-system
           
-
 ![image](https://github.com/user-attachments/assets/0c5bc16f-3902-47b1-8370-99ab1bce7de1)
 
 Check lastest version or on which version our kubernetes work and use that image for autoscaler pod: (https://github.com/kubernetes/autoscaler/releases)
 
-In my case i use version -->> --version 1.30  so i use image version ":v1.30.1"
+In my case i use version -->> **--version 1.30**  so i use image version ":v1.30.1"
 
 command for deployment.apps/cluster-autoscaler image updated: (Optional commad/not needed)
 
@@ -89,9 +81,8 @@ we can check nodes details info using command:
 we can check specific nodes details info using command:
 
       kubectl describe nodes <nodeName>
-       
-# AutoScaling of POD:
-
+      
+## AutoScaling of POD:
 The manual Horizontal scaling of pods we can done using command:
 
     kubectl scale deployment myps1  --replicas=5
