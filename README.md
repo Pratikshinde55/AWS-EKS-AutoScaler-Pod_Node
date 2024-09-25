@@ -87,7 +87,7 @@ The manual Horizontal scaling of pods we can done using command:
 
     kubectl scale deployment myps1  --replicas=5
 
-Steps:  (Steps for Autoscaling of pods)
+- Steps:  (Steps for Autoscaling of pods)
  1.  Install/Download Metrics server & check that is running.
  2.  Start Hps for deployment.
 
@@ -101,70 +101,63 @@ Steps:  (Steps for Autoscaling of pods)
   
   Hpa: Horizontal pod AutoScaling
 
-- Step 1: Install metrics server from YAML file -->> Search on browser 'kubernetes metric server' (Link: https://github.com/kubernetes-sigs/metrics-server)
+### Step-1: [Install metrics server from YAML file -->> Search on browser 'kubernetes metric server' (Link: https://github.com/kubernetes-sigs/metrics-server)]
 
-      kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
 ![image](https://github.com/user-attachments/assets/d56b865e-1477-478a-b6d3-0e29cd5cabd4)
 
+Check running metrics server pod command:
 
-check running metrics server pod command:
-
-      kubectl get pods -n kube-system
+    kubectl get pods -n kube-system
 
 ![image](https://github.com/user-attachments/assets/c1382a20-1d0a-4892-bbc1-b00cc5957a01)
 
-      kubectl get deployment -n kube-system
+    kubectl get deployment -n kube-system
 
 ![image](https://github.com/user-attachments/assets/93d02a37-a9bf-42b7-b501-1c7ffe9c93c1)
 
+### Step-2: [Start Hpa for deployment]
+We can launch a pod with Hpa, it means we set that pod/deployment as Hpa which autoscale according to load.
 
-- Step 2: Start Hpa for deployment 
+Hpa is just progarm which attach to Pod/deployment.
 
-  we can launch a pod with Hpa, it means we set that pod/deployment as Hpa which autoscale according to load.
+for thid i use load generator app which provided by Kubernetes for checking AutoScaling working
+[Load-generator-app-link](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough)
 
-  Hpa is just progarm which attach to Pod/deployment.
+To demonstrate a HorizontalPodAutoscaler, you will first start a Deployment that runs a container using the hpa-example image, and expose it as a Service using the following manifest:
 
-  for thid i use load generator app which provided by Kubernetes for checking AutoScaling working
-  (link- https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough)
-
-  To demonstrate a HorizontalPodAutoscaler, you will first start a Deployment that runs a container using the hpa-example image,
-  and expose it as a Service using the following manifest:
-
-       kubectl apply -f https://k8s.io/examples/application/php-apache.yaml
+    kubectl apply -f https://k8s.io/examples/application/php-apache.yaml
 
 ![image](https://github.com/user-attachments/assets/0d9d8cf9-d507-4f89-896d-4482ae98bc40)
 
+Create the HorizontalPodAutoscaler:
 
- Create the HorizontalPodAutoscaler:
+    kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
 
-      kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
-
- Here we use autoscale keyword which start hpa and set cpu limit=50 and minimum and maximum replicas/scale limit.
+Here we use autoscale keyword which start hpa and set **cpu limit=50** and minimum and maximum replicas/scale limit.
  
 ![image](https://github.com/user-attachments/assets/05146fb9-9477-4dd4-8ecb-676ae52f108e)
 
- Check Hpa start cmd:
+Check Hpa start cmd:
 
-      kubectl get hpa
+    kubectl get hpa
 
 ![image](https://github.com/user-attachments/assets/67bd0c12-6f6a-4fd0-944a-028ac863d786)
 
-- Now Increase load (This command need fresh terminal or clear terminal)
+- Now Increase load (This command need fresh terminal or clear terminal):
 
-      kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
-
+    kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
 
 ![image](https://github.com/user-attachments/assets/956d05d4-0f3e-4d5d-a742-7dd239557392)
 
-we can check the the our load increases by watch command:
+- We can check the the our load increases by watch command:
 
-        kubectl get hpa php-apache --watch
+    kubectl get hpa php-apache --watch
 
- ![image](https://github.com/user-attachments/assets/eaaadd03-1b40-4dcc-bdde-0e45c59027ae)
+![image](https://github.com/user-attachments/assets/eaaadd03-1b40-4dcc-bdde-0e45c59027ae)
 
-
-# See that Autoscaling of Pods and Nodes work:
+## See that Autoscaling of Pods and Nodes work:
 
 - Pods: 
   The metrics server keep on monitoring on pod as soon as load increases on pod/deployment, It send information to hpa (Horizontal pod autoscaler) and based upon 
