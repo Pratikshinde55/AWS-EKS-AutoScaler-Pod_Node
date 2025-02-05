@@ -38,11 +38,24 @@ Steps:
 ![image](https://github.com/user-attachments/assets/f58bac64-f176-41fa-a615-163758d6362a)
 
 ### Step-2: [Download asg file (This command download GitHub file named as "cluster-autoscaler-autodiscover.yaml")]
+#### **What is cluster-autoscaler-autodiscover.yml in AWS EKS?**
+The cluster-autoscaler-autodiscover.yml file is a Kubernetes manifest that deploys the Cluster Autoscaler in an EKS cluster. 
+It is responsible for automatically scaling worker nodes (EC2 instances) based on pod demand.
+
+#### **Why is cluster-autoscaler-autodiscover.yml Important?**
+Even though AWS Auto Scaling Groups (ASG) handle scaling at the EC2 instance level, ASG alone does not understand Kubernetes pod scheduling. 
+Cluster Autoscaler (CA) is required to ensure the number of worker nodes dynamically adjusts based on pending pods.
+
+#### **Key Features of Cluster Autoscaler:**
+- Monitors Pending Pods: If pods cannot be scheduled due to insufficient node capacity, CA requests ASG to scale out.
+- Node Scale-In: If nodes are underutilized (empty), CA scales them down safely.
+- Integrates with ASG: Uses AWS tags to discover and manage ASG dynamically.
+- Works with K8s Scheduler: Ensures Kubernetes schedules pods efficiently.
 
      curl -O https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
 
 ### Step-3: [Open and edit YAML file "cluster-autoscaler-autodiscover.yaml"]
-The YAML file sets up permissions and deploys the Cluster Autoscaler pod, which automatically scales our Kubernetes cluster based on workload demands.
+The YAML file sets up permissions and deploys the Cluster Autoscaler, which automatically scales our Kubernetes cluster based on workload demands.
 
      notepad cluster-autoscaler-autodiscover.yaml
 
@@ -60,7 +73,7 @@ In this file we replace "<YOUR CLUSTER NAME >"  > "pscluster2" my cluster name
 
     kubectl apply -f cluster-autoscaler-autodiscover.yaml
 
-After apply check cluster-autoscaler pod run:
+After apply check cluster-autoscaler run:
 
      kubectl get pods -n kube-system
           
