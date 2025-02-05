@@ -52,7 +52,7 @@ Cluster Autoscaler (CA) is required to ensure the number of worker nodes dynamic
 - Integrates with ASG: Uses AWS tags to discover and manage ASG dynamically.
 - Works with K8s Scheduler: Ensures Kubernetes schedules pods efficiently.
 
-     curl -O https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
+           curl -O https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
 
 ### Step-3: [Open and edit YAML file "cluster-autoscaler-autodiscover.yaml"]
 The YAML file sets up permissions and deploys the Cluster Autoscaler, which automatically scales our Kubernetes cluster based on workload demands.
