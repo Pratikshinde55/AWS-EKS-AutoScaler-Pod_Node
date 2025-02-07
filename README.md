@@ -1,30 +1,21 @@
 # AWS EKS AutoScaler for Node & pod
-
 **EKS master Node AutoScaling is fully managed by EKS.** 
 
-- There are two Scaling in EKS: 
+There are two Scaling in EKS: 
   1. Node AutoScaling (Cluster AutoScaler & karpenter)
   2. POD AutoScaling (Hpa)
 
  1. Node AutoScaling: 
-    It is "Cluster AutoScaler" means increases worker node, For this EKS use aws ASG service(Auto scaling group).
-
-    There are two Autoscaling are available for Node that is "Cluster AutoScaler" & "karpenter".
-
-    for Autoscaling metrics is important, EKS uses aws "Cloud Watch" for matrics the node.
-
-    Matrics means the program keep on monitoring the CPU,RAM of Nodes. 
+    - It is "Cluster AutoScaler" means increases worker node, For this EKS use aws ASG service(Auto scaling group).
+    - There are two Autoscaling are available for Node that is "Cluster AutoScaler" & "karpenter".
+    - for Autoscaling metrics is important, EKS uses aws "Cloud Watch" for matrics the node.
+      Matrics means the program keep on monitoring the CPU,RAM of Nodes. 
 
 2. POD AutoScaling:
-
-   For Pod AutoScaling Hpa(Horizontal Pod AutoScaling) is used.
-
-   Kubernetes give metrics server for pod autoscaling, we need to download that metrics server which helps us for AutoScaling.
+   - For Pod AutoScaling Hpa(Horizontal Pod AutoScaling) is used.
+   - Kubernetes give metrics server for pod autoscaling, we need to download that metrics server which helps us for AutoScaling.
    
-
-
 ## AutoScaler of Node:
-
 Steps: 
 1.  Create cluster with enabling asg access.
 2.  Download Cluster Autoscaler YAML file.
@@ -100,19 +91,15 @@ The manual Horizontal scaling of pods we can done using command:
 
     kubectl scale deployment myps1  --replicas=5
 
-- Steps:  (Steps for Autoscaling of pods)
+Steps:  (Steps for Autoscaling of pods)
  1.  Install/Download Metrics server & check that is running.
  2.  Start Hps for deployment.
 
-- Note:
-
-  There is no program running which give metrics of pods, without metrics server we can't use AutoScaling because of this Kubernetes provide "Metrics server".
-
-  Metrics server keep on monitoring on all pods(CPU, RAM), If load come then auto horizontal scaling done by using Hpa.
-
-  Metrics server is one kind of program running as pod.
-  
-  Hpa: Horizontal pod AutoScaling
+Note:
+- There is no program running which give metrics of pods, without metrics server we can't use AutoScaling because of this Kubernetes provide "Metrics server".
+- Metrics server keep on monitoring on all pods(CPU, RAM), If load come then auto horizontal scaling done by using Hpa.
+- Metrics server is one kind of program running as pod.
+- Hpa: Horizontal pod AutoScaling
 
 ### Step-1: [Install metrics server from YAML file]
 Search on browser 'kubernetes metric server' [Metrics-server-pod-link](https://github.com/kubernetes-sigs/metrics-server)
@@ -132,14 +119,13 @@ Check running metrics server pod command:
 ![image](https://github.com/user-attachments/assets/93d02a37-a9bf-42b7-b501-1c7ffe9c93c1)
 
 ### Step-2: [Start Hpa for deployment]
-We can launch a pod with Hpa, it means we set that pod/deployment as Hpa which autoscale according to load.
-
-Hpa is just progarm which attach to Pod/deployment.
-
-for thid i use load generator app which provided by Kubernetes for checking AutoScaling working
+- We can launch a pod with Hpa, it means we set that pod/deployment as Hpa which autoscale according to load.
+- Hpa is just progarm which attach to Pod/deployment.
+- for thid i use load generator app which provided by Kubernetes for checking AutoScaling working
 [Load-generator-app-link](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough)
 
-To demonstrate a HorizontalPodAutoscaler, you will first start a Deployment that runs a container using the hpa-example image, and expose it as a Service using the following manifest:
+To demonstrate a HorizontalPodAutoscaler, you will first start a Deployment that runs a container using the hpa-example image, 
+and expose it as a Service using the following manifest:
 
     kubectl apply -f https://k8s.io/examples/application/php-apache.yaml
 
@@ -159,40 +145,36 @@ Check Hpa start cmd:
 
 ![image](https://github.com/user-attachments/assets/67bd0c12-6f6a-4fd0-944a-028ac863d786)
 
-- Now Increase load (This command need fresh terminal or clear terminal):
+Now Increase load (This command need fresh terminal or clear terminal):
 
-       kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
+    kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
 
 ![image](https://github.com/user-attachments/assets/956d05d4-0f3e-4d5d-a742-7dd239557392)
 
-- We can check the the our load increases by watch command:
+We can check the the our load increases by watch command:
 
-       kubectl get hpa php-apache --watch
+    kubectl get hpa php-apache --watch
 
 ![image](https://github.com/user-attachments/assets/eaaadd03-1b40-4dcc-bdde-0e45c59027ae)
 
 ## See that Autoscaling of Pods and Nodes work:
-
-- Pods: 
-  The metrics server keep on monitoring on pod as soon as load increases on pod/deployment, It send information to hpa (Horizontal pod autoscaler) and based upon 
-  that information Hpa keeps on launching & terminating pods.
+Pods: 
+  - The metrics server keep on monitoring on pod as soon as load increases on pod/deployment, It send information to hpa (Horizontal pod autoscaler) and based 
+ upon that information Hpa keeps on launching & terminating pods.
 
 ![image](https://github.com/user-attachments/assets/5cf7457d-ce86-4e6f-bf2c-4e775da9154c)
 
 ![Screenshot 2024-08-10 115601](https://github.com/user-attachments/assets/64da63f6-a50b-45e7-b1f2-03117ecb49d2)
 
-- Nodes:
-  "Cluster Autoscaler"(YMAl file) keep on monitoring and send information to "asg". It capture information & that information send to asg
-   and based upon information it keeps in launching and terminating Nodes(Instances).
+**Nodes:**
+  **"Cluster Autoscaler"(YMAl file) keep on monitoring and send information to "asg". It capture information & that information send to asg
+   and based upon information it keeps in launching and terminating Nodes(Instances).**
 
 ![image](https://github.com/user-attachments/assets/a348f046-68f9-4ad4-a809-265c947125e7)
    
 ![Screenshot 2024-08-10 115803](https://github.com/user-attachments/assets/5372de42-5a75-4274-9158-193586f728ab)
 
-
-
-- Note:
-
-  as soon as we stop load generator then 1st pods scale-in to 1 and then Nodes Scale-in to 3 because min=3
+**Note:**
+- As soon as we stop load generator then 1st pods scale-in to 1 and then Nodes Scale-in to 3 because min=3
 
 ![image](https://github.com/user-attachments/assets/e15b10e3-748e-4b53-94ab-80ef5ecde78a)
