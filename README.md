@@ -161,13 +161,13 @@ Check Hpa start cmd:
 
 - Now Increase load (This command need fresh terminal or clear terminal):
 
-    kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
+       kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
 
 ![image](https://github.com/user-attachments/assets/956d05d4-0f3e-4d5d-a742-7dd239557392)
 
 - We can check the the our load increases by watch command:
 
-    kubectl get hpa php-apache --watch
+       kubectl get hpa php-apache --watch
 
 ![image](https://github.com/user-attachments/assets/eaaadd03-1b40-4dcc-bdde-0e45c59027ae)
 
